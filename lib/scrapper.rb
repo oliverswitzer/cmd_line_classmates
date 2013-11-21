@@ -13,7 +13,10 @@ class Scraper
   end
 
   def get_students_names
-    all_the_h3s = @html.search("h3")
+    all_the_h3s = @html.search("h3").to_s.gsub(" ", "*").gsub("</h3>", "<h3>").gsub("<h3>", " ").split
+    all_the_h3s.collect do |name|
+      name.gsub("*", " ")
+    end
   end
 
   def get_student_twitter
@@ -29,6 +32,8 @@ end
 
 my_scraper = Scraper.new("http://flatironschool-bk.herokuapp.com/")
 
-puts my_scraper.get_students_names   
+p my_scraper.get_students_names
 
+puts
+puts "-" *50
 p my_scraper.get_student_twitter
