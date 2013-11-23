@@ -40,6 +40,14 @@ class Scraper
     blog_url_array
   end
 
+  def get_students_blogs2
+    
+    blog_url = html.search("a.blog @href")
+    blog_url_array = []
+    blog_url_array << blog_url
+    puts blog_url_array[0].inspect
+  end
+
 
   def get_names_3
     face = html.search(".student .card")
@@ -69,8 +77,9 @@ my_scraper = Scraper.new("http://flatironschool-bk.herokuapp.com/")
 # p my_scraper.get_students_names
 # puts
 # puts "-" *50
-# p my_scraper.get_student_twitter
+p my_scraper.get_student_twitter
 # puts 
 # puts "-" *50
-my_scraper.get_names_3
+# my_scraper.get_names_3
+# my_scraper.get_students_blogs2
 # p my_scraper.get_students_blogs
