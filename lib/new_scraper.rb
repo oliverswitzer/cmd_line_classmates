@@ -20,9 +20,7 @@ class Scraper
   def get_student_twitter
   student_html = html.search(".student")
     twitter_url_array = []
-    # debugger
     student_html.each do |twitter_almost|
-      # debugger
       if twitter_almost.search(".twitter")[0].nil?
         twitter_url_array << "none"
       else
@@ -33,11 +31,16 @@ class Scraper
   end
 
   def get_students_blogs
-    blogs = []
-    html.search("a.blog").each do  |anchor| 
-      blogs << anchor["href"] 
+    student_html = html.search(".student")
+    blog_url_array = []
+    student_html.each do |blog_almost|
+      if blog_almost.search(".blog")[0].nil?
+        blog_url_array << "none"
+      else
+        blog_url_array << blog_almost.search(".blog")[0]["href"]
+      end        
     end
-  blogs
+    blog_url_array
   end
 
 end

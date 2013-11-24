@@ -18,12 +18,8 @@ blogs = student_scraper.get_students_blogs
 students = []
 
 28.times do |i|
-  students << Student.new(names[i], twitters[i], "N/A")
+  students << Student.new(names[i], twitters[i], blogs[i])
 end
-
-
-
-puts students.inspect
 
 
 #write a scrapper that retrieves name of a pokemon from bulbapeida.com

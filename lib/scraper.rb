@@ -4,7 +4,7 @@ require 'open-uri'  #supplies open() method to open a URL
 require 'nokogiri'  #line12 --
 require 'debugger'
 
-class Scraper
+class ScraperOld
   attr_reader :html
 
   def initialize(url)
@@ -77,9 +77,9 @@ my_scraper = Scraper.new("http://flatironschool-bk.herokuapp.com/")
 # p my_scraper.get_students_names
 # puts
 # puts "-" *50
-p my_scraper.get_student_twitter
+# p my_scraper.get_student_twitter
 # puts 
 # puts "-" *50
 # my_scraper.get_names_3
-# my_scraper.get_students_blogs2
+my_scraper.get_students_blogs2
 # p my_scraper.get_students_blogs
