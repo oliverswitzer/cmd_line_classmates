@@ -22,6 +22,28 @@ students = []
 end
 
 
-#write a scrapper that retrieves name of a pokemon from bulbapeida.com
-#create a Pokemon class object, with namem and method called say_name
-#create an app like this one that calls the say_name
+def display_info(student)
+  puts student.name
+  puts "  Blog: #{student.blog}"
+  puts "  Twitter: #{student.twitter}"
+  puts "+" * 40
+end
+
+
+puts "Options:"
+puts "  To see all students and their blogs type 'l'"
+puts "  To get the information of a specific student, type their first name"
+i = gets.chomp.downcase
+if i == 'l'
+  students.each do |student|
+    display_info(student)
+  end
+else
+  students.each do |student|
+    m = /^\w+\b/.match(student.name)
+    if m[0].downcase == i
+      puts "+" * 40
+      display_info(student)
+    end
+  end
+end
