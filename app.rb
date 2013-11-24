@@ -1,5 +1,7 @@
 require './lib/new_scraper'  #require everything in the library folder
 require './lib/student'
+require 'launchy'
+
 
 # # 1. make a new scraper
 # my_scrapper = Scraper.new()
@@ -32,18 +34,49 @@ end
 
 puts "Options:"
 puts "  To see all students and their blogs type 'l'"
+puts "  To open a random student's twitter type 't'"
+puts "  To open a random student's blog type 'b'"
 puts "  To get the information of a specific student, type their first name"
 i = gets.chomp.downcase
+
 if i == 'l'
   students.each do |student|
     display_info(student)
   end
+elsif i == 't'
+  running = true
+  while running
+    rand_student = students.sample
+    if rand_student.twitter != 'none'
+      Launchy.open("#{rand_student.twitter}")
+      running = false
+    end
+  end
+elsif i == 'b'
+  running = true
+  while running
+    rand_student = students.sample
+    if rand_student.blog != 'none'
+        Launchy.open("#{rand_student.twitter}")
+        running = false
+    end
+  end
+  rand_student = students.sample
+  Launchy.open("#{rand_student.blog}")
 else
   students.each do |student|
     m = /^\w+\b/.match(student.name)
     if m[0].downcase == i
       puts "+" * 40
       display_info(student)
+      puts "Would you like to visit their twitter or blog?\n  Type 't' for their twitter and 'b' for their blog"
+      inp = gets.chomp.downcase
+      case inp
+      when 't'
+        Launchy.open("#{student.twitter}")
+      when 'b' 
+        Launchy.open("#{student.blog}")
+      end
     end
   end
 end
